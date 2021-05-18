@@ -722,6 +722,13 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
+node-cpf@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/node-cpf/-/node-cpf-1.1.1.tgz#a7f13173f3c12e5cedfe337d71ee5194bc4c447e"
+  integrity sha512-PKvKSm5vDQLg/HrFE01pGBwtvnLAl5LloUOPubFByJLJD43x3YfJDZSaA79nxt8dXC/+406GE//o1OO/0QgWow==
+  dependencies:
+    shuffle-list "^1.0.0"
+
 nodemon@^2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-2.0.7.tgz#6f030a0a0ebe3ea1ba2a38f71bf9bab4841ced32"
@@ -950,6 +957,11 @@ setprototypeof@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.1.tgz#7e95acb24aa92f5885e0abef5ba131330d4ae683"
   integrity sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
+
+shuffle-list@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shuffle-list/-/shuffle-list-1.0.0.tgz#16414cde6eb6352803738b7c43ece4a14d847573"
+  integrity sha1-FkFM3m62NSgDc4t8Q+zkoU2EdXM=
 
 signal-exit@^3.0.2:
   version "3.0.3"

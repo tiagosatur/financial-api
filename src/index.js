@@ -1,5 +1,6 @@
 const express = require("express");
 const { v4: uuid } = require("uuid");
+const nodeCpf = require("node-cpf");
 const app = express();
 app.use(express.json());
 
@@ -14,10 +15,26 @@ let customers = [];
 
 app.post("/account", (req, res) => {
   const { cpf, name } = req.body;
-  const id = uuid();
+  const isValid = nodeCpf.validate(cpf);
+
+  if (!cpf || !isValid) {
+    return res.status(400).send({
+      error: "Provide a valid CPF",
+    });
+  }
+
+  const customerAlreadyExists = customers.some(
+    (customer) => customer.cpf === cpf
+  );
+
+  if (customerAlreadyExists) {
+    return res.status(400).send({
+      error: "Customer already exists",
+    });
+  }
 
   const newAccount = {
-    id,
+    id: uuid(),
     cpf,
     name,
     statement: [],
