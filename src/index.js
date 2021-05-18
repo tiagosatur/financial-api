@@ -44,9 +44,21 @@ app.post("/account", (req, res) => {
 });
 
 app.get("/statement/:cpf", (req, res) => {
-  const { cpf } = req.body;
+  const { cpf } = req.params;
 
-  const customer = customers.find((customer = customer.cpf === cpf));
+  if (!cpf) {
+    return res.status(400).json({
+      error: "CPF is required",
+    });
+  }
+
+  const customer = customers.find((customer) => customer.cpf === cpf);
+
+  if (!customer) {
+    return res.status(400).send({
+      error: "Customer not found",
+    });
+  }
 
   return res.send(customer.statement);
 });
