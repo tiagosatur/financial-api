@@ -43,6 +43,14 @@ app.post("/account", (req, res) => {
   res.status(200).send(newAccount);
 });
 
+app.get("/statement/:cpf", (req, res) => {
+  const { cpf } = req.body;
+
+  const customer = customers.find((customer = customer.cpf === cpf));
+
+  return res.send(customer.statement);
+});
+
 app.listen(3333, () => {
   console.log("🚀 Listening on port 3333");
 });
