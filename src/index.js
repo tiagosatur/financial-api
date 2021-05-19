@@ -6,6 +6,31 @@ app.use(express.json());
 
 let customers = [];
 
+function accountExistsByCpf(req, res, next) {
+  const { cpf } = req.headers;
+
+  if (!cpf) {
+    return res.status(400).json({
+      error: "CPF is required",
+    });
+  }
+
+  const customer = customers.find((customer) => customer.cpf === cpf);
+
+  if (!customer) {
+    return res.status(400).json({
+      error: "Customer not found",
+    });
+  }
+
+  req.customer = customer;
+
+  return next();
+}
+
+// All the routes belows would have the middleware
+//app.use(accountExistsByCpf)
+
 /**
  * cpf - string
  * name - string
@@ -43,22 +68,8 @@ app.post("/account", (req, res) => {
   res.status(200).send(newAccount);
 });
 
-app.get("/statement/:cpf", (req, res) => {
-  const { cpf } = req.params;
-
-  if (!cpf) {
-    return res.status(400).json({
-      error: "CPF is required",
-    });
-  }
-
-  const customer = customers.find((customer) => customer.cpf === cpf);
-
-  if (!customer) {
-    return res.status(400).send({
-      error: "Customer not found",
-    });
-  }
+app.get("/statement", accountExistsByCpf, (req, res) => {
+  const { customer } = req;
 
   return res.send(customer.statement);
 });
