@@ -23,9 +23,20 @@ function accountExistsByCpf(req, res, next) {
     });
   }
 
-  req.customer = customer;
+  req.body.customer = customer;
 
   return next();
+}
+
+function getBalance(statement) {
+  const balance = statement.reduce((total, operation) => {
+    if (operation.type === "credit") {
+      return total + operation.amount;
+    }
+    return total - operation.amount;
+  }, 0);
+
+  return balance;
 }
 
 // All the routes belows would have the middleware
@@ -69,14 +80,13 @@ app.post("/account", (req, res) => {
 });
 
 app.get("/statement", accountExistsByCpf, (req, res) => {
-  const { customer } = req;
+  const { customer } = req.body;
 
   return res.send(customer.statement);
 });
 
 app.post("/deposit", accountExistsByCpf, (req, res) => {
-  const { description, amount } = req.body;
-  const { customer } = req;
+  const { description, amount, customer } = req.body;
 
   const statementOperation = {
     description,
@@ -88,6 +98,26 @@ app.post("/deposit", accountExistsByCpf, (req, res) => {
   customer.statement.push(statementOperation);
 
   return res.status(201).send(statementOperation);
+});
+
+app.post("/withdraw", accountExistsByCpf, (req, res) => {
+  const { amount, customer } = req.body;
+  const balance = getBalance(customer.statement);
+  console.log("🚀 ~ balance", balance);
+
+  if (balance < amount) {
+    return res.status(400).json({ error: "Insufficient funds" });
+  }
+
+  const statementOperation = {
+    amount,
+    created_at: new Date(),
+    type: "debit",
+  };
+
+  customer.statement.push(statementOperation);
+
+  return res.status(201).json(statementOperation);
 });
 
 app.listen(3333, () => {
