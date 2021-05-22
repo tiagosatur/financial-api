@@ -96,6 +96,16 @@ app.put("/account", accountExistsByCpf, (req, res) => {
   res.status(200).json(customer);
 });
 
+app.delete("/account", accountExistsByCpf, (req, res) => {
+  const { customer } = req.body;
+
+  customers = customers.filter((item) => item.id !== customer.id);
+
+  res.status(201).json({
+    success: "Account succesfully deleted",
+  });
+});
+
 app.get("/statement", accountExistsByCpf, (req, res) => {
   const { customer } = req.body;
 
@@ -105,7 +115,6 @@ app.get("/statement", accountExistsByCpf, (req, res) => {
 app.get("/statement/date", accountExistsByCpf, (req, res) => {
   const { customer } = req.body;
   const { date } = req.query;
-  console.log("🚀 ~date", date);
 
   if (!date) {
     return res.status(400).send({
