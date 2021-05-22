@@ -173,6 +173,13 @@ app.post("/withdraw", accountExistsByCpf, (req, res) => {
   return res.status(201).json(statementOperation);
 });
 
+app.get("/balance", accountExistsByCpf, (req, res) => {
+  const { customer } = req.body;
+  const balance = getBalance(customer.statement);
+
+  return res.status(200).json(balance);
+});
+
 app.listen(3333, () => {
   console.log("🚀 Listening on port 3333");
 });

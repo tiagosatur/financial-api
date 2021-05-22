@@ -10,6 +10,7 @@
 - [x] It must be possible to update customer's account name
 - [x] It must be possible to get custormer's account data
 - [x] It must be possible to delete account
+- [x] It must be possible to get customer's balance
 
 ## Business rules
 
