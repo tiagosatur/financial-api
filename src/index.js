@@ -1,6 +1,7 @@
 const express = require("express");
 const { v4: uuid } = require("uuid");
 const nodeCpf = require("node-cpf");
+const { response } = require("express");
 const app = express();
 app.use(express.json());
 
@@ -85,6 +86,29 @@ app.get("/statement", accountExistsByCpf, (req, res) => {
   return res.send(customer.statement);
 });
 
+app.get("/statement/date", accountExistsByCpf, (req, res) => {
+  const { customer } = req.body;
+  const { date } = req.query;
+  console.log("🚀 ~date", date);
+
+  if (!date) {
+    return res.status(400).send({
+      error: "Date is required",
+    });
+  }
+
+  const dateFormat = new Date(date + " 00:00");
+
+  const statement = customer.statement.filter((statement) => {
+    return (
+      statement.created_at.toDateString() ===
+      new Date(dateFormat).toDateString()
+    );
+  });
+
+  return res.status(200).json(statement);
+});
+
 app.post("/deposit", accountExistsByCpf, (req, res) => {
   const { description, amount, customer } = req.body;
 
@@ -103,7 +127,6 @@ app.post("/deposit", accountExistsByCpf, (req, res) => {
 app.post("/withdraw", accountExistsByCpf, (req, res) => {
   const { amount, customer } = req.body;
   const balance = getBalance(customer.statement);
-  console.log("🚀 ~ balance", balance);
 
   if (balance < amount) {
     return res.status(400).json({ error: "Insufficient funds" });

@@ -6,8 +6,8 @@
 - [x] It must be possible to get the customer's bank statement
 - [x] It must be possible to make a deposit
 - [x] It must be possible to make a withdrawal
-- [ ] It must be possible to retrieve the customer's bank statement by date
-- [ ] It must be possible to update customer's account data
+- [x] It must be possible to retrieve the customer's bank statement by date
+- [ ] It must be possible to update customer's account date
 - [ ] It must be possible to get custormer's account data
 - [ ] It must be possible to delete account
 
