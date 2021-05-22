@@ -50,6 +50,11 @@ function getBalance(statement) {
  * statement []
  */
 
+app.get("/account", accountExistsByCpf, (req, res) => {
+  const { customer } = req.body;
+  return res.status(201).json(customer);
+});
+
 app.post("/account", (req, res) => {
   const { cpf, name } = req.body;
   const isValid = nodeCpf.validate(cpf);
