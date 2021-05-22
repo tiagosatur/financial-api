@@ -80,6 +80,17 @@ app.post("/account", (req, res) => {
   res.status(200).send(newAccount);
 });
 
+app.put("/account", accountExistsByCpf, (req, res) => {
+  const { customer, name } = req.body;
+  if (!name) {
+    return res.status(400).json({
+      error: "Name is required",
+    });
+  }
+  customer.name = name;
+  res.status(200).json(customer);
+});
+
 app.get("/statement", accountExistsByCpf, (req, res) => {
   const { customer } = req.body;
 

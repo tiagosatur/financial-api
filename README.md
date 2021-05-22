@@ -7,7 +7,7 @@
 - [x] It must be possible to make a deposit
 - [x] It must be possible to make a withdrawal
 - [x] It must be possible to retrieve the customer's bank statement by date
-- [ ] It must be possible to update customer's account date
+- [x] It must be possible to update customer's account name
 - [ ] It must be possible to get custormer's account data
 - [ ] It must be possible to delete account
 
