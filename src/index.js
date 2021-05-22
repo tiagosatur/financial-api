@@ -103,7 +103,10 @@ app.delete("/account", accountExistsByCpf, (req, res) => {
   // customers = customers.filter((item) => item.id !== customer.id);
 
   // Delete method 2
-  customers.splice(customer, 1);
+  const findExactCustomer = customers.findIndex(
+    (item) => item.cpf === customer.cpf
+  );
+  customers.splice(findExactCustomer, 1);
 
   res.status(200).json({
     success: "Account succesfully deleted",
