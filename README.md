@@ -17,5 +17,5 @@
 - [x] It must not be possible to search customer's bank statement of a non existing account
 - [x] It must not be possible to make a deposit in a non existing account
 - [x] It must not be possible to make a withdrawal in a non existing account
+- [x] It must be possible to make a withdrawal when the balance is insufficient
 - [x] It must not be possible to delete a non existing account
-- [ ] It must be possible to make a withdrawal when the balance is insufficient

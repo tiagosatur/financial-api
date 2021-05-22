@@ -99,10 +99,15 @@ app.put("/account", accountExistsByCpf, (req, res) => {
 app.delete("/account", accountExistsByCpf, (req, res) => {
   const { customer } = req.body;
 
-  customers = customers.filter((item) => item.id !== customer.id);
+  // Delete method 1
+  // customers = customers.filter((item) => item.id !== customer.id);
 
-  res.status(201).json({
+  // Delete method 2
+  customers.splice(customer, 1);
+
+  res.status(200).json({
     success: "Account succesfully deleted",
+    customers,
   });
 });
 
