@@ -19,4 +19,20 @@
 - [x] It must not be possible to make a deposit in a non existing account
 - [x] It must not be possible to make a withdrawal in a non existing account
 - [x] It must be possible to make a withdrawal when the balance is insufficient
-- [x] It must not be possible to delete a non existing account
+- [x] It must be possible to delete just existings accounts
+
+## API Documentation
+
+Base url: `http://localhost:3333`
+
+| Method | Route             | Headers | Body                                                                    | Parameters       | Return                                        |
+| ------ | ----------------- | ------- | ----------------------------------------------------------------------- | ---------------- | --------------------------------------------- |
+| GET    | `/account`        | cpf     | -                                                                       | -                | Object: id, name, cpf, statement[]            |
+| POST   | `/account`        | -       | <pre lang="json">{ "cpf": "22925290094", "name": "Joseph Satur" }</pre> | -                | Object: id, name, cpf, statement[]            |
+| PUT    | `/account`        | cpf     | <pre lang="json">{ "name": "Joseph Satur" }</pre>                       | -                | Object: id, name, cpf, statement[]            |
+| DELETE | `/account`        | cpf     | -                                                                       | -                | Object: success, remainingCustomers[]         |
+| GET    | `/balance`        | cpf     | -                                                                       | -                | Number                                        |
+| POST   | `/withdraw`       | cpf     | <pre lang="json">{ "amount": 200 }</pre>                                | -                | Object: amount, created_at, type              |
+| POST   | `/deposit`        | cpf     | <pre lang="json">{ "description": "Book sell", "amount": 50 }</pre>     | -                | Object: amount, created_at, type, description |
+| GET    | `/statement`      | cpf     | -                                                                       | -                | Array: amount, created_at, type, description  |
+| GET    | `/statement/date` | cpf     | -                                                                       | ?date=2021-05-23 | Array: amount, created_at, type, description  |

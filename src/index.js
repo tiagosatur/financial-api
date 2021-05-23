@@ -80,7 +80,7 @@ app.delete("/account", accountExistsByCpf, (req, res) => {
 
   res.status(200).json({
     success: "Account succesfully deleted",
-    customers,
+    remainingCustomers: customers,
   });
 });
 
