@@ -1,44 +1,14 @@
 const express = require("express");
+
+const accountExistsByCpf = require("./utils/accountExistsByCpf");
+const getBalance = require("./utils/getBalance");
+const customers = require("./utils/customers");
+
 const { v4: uuid } = require("uuid");
 const nodeCpf = require("node-cpf");
-const { response } = require("express");
 const app = express();
+
 app.use(express.json());
-
-let customers = [];
-
-function accountExistsByCpf(req, res, next) {
-  const { cpf } = req.headers;
-
-  if (!cpf) {
-    return res.status(400).json({
-      error: "CPF is required",
-    });
-  }
-
-  const customer = customers.find((customer) => customer.cpf === cpf);
-
-  if (!customer) {
-    return res.status(400).json({
-      error: "Customer not found",
-    });
-  }
-
-  req.body.customer = customer;
-
-  return next();
-}
-
-function getBalance(statement) {
-  const balance = statement.reduce((total, operation) => {
-    if (operation.type === "credit") {
-      return total + operation.amount;
-    }
-    return total - operation.amount;
-  }, 0);
-
-  return balance;
-}
 
 // All the routes belows would have the middleware
 //app.use(accountExistsByCpf)
