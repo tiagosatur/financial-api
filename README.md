@@ -17,6 +17,7 @@ This app was developed for study purposes.
 - ExpressJS
 - Nodemon
 - Yarn
+- [Node cpf validation](https://github.com/leonardothibes/node-cpf)
 
 ## Concepts :bulb:
 
@@ -50,6 +51,8 @@ This app was developed for study purposes.
 ## API Documentation :page_with_curl:
 
 Base url: `http://localhost:3333`
+
+It must be a valid CPF, so you can use a [cpf generator](https://www.4devs.com.br/gerador_de_cpf)
 
 | Method | Route             | Headers | Body                                                                    | Parameters       | Return                                        |
 | ------ | ----------------- | ------- | ----------------------------------------------------------------------- | ---------------- | --------------------------------------------- |
