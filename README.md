@@ -1,6 +1,32 @@
-# Financial API
+# Financial API :moneybag:
 
-## Requirements
+With this api you can create/update/delete an account. Using the user CPF you can make a deposit; make a withdraw; get user balance get all user transactions and transactions by date.
+
+This app was developed for study purposes.
+
+## Run :running:
+
+`yarn install`
+
+`yarn dev`
+
+## Stack :bowtie:
+
+- Javascript
+- NodeJS
+- ExpressJS
+- Nodemon
+- Yarn
+
+## Concepts :bulb:
+
+- Rest API
+- HTTP Methods
+- Route middlewares
+- Separation of concerns
+- JSON
+
+## Requirements :heavy_check_mark:
 
 - [x] It must be possible to create an account
 - [x] It must be possible to get the customer's bank statement
@@ -12,7 +38,7 @@
 - [x] It must be possible to delete account
 - [x] It must be possible to get customer's balance
 
-## Business rules
+## Business rules :briefcase:
 
 - [x] It must not be possible to register an account when CPF already exists
 - [x] It must not be possible to search customer's bank statement of a non existing account
@@ -21,7 +47,7 @@
 - [x] It must be possible to make a withdrawal when the balance is insufficient
 - [x] It must be possible to delete just existings accounts
 
-## API Documentation
+## API Documentation :page_with_curl:
 
 Base url: `http://localhost:3333`
 
